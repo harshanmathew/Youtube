@@ -50,4 +50,4 @@ streamlit==1.39.0
 
 urllib3==2.2.3
 
-youtube-transcript-api==0.6.2
+youtube-transcript-api==0.6.1
