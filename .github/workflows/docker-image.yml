@@ -33,7 +33,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true 
-          tags: ghcr.io/${{ github.repository }}/fastapi-youtube-transcript-api:latest  
+          tags: ghcr.io/harshanmathew/fastapi-youtube-transcript-api:latest  
 
       - name: Run Docker container
-        run:  docker run -d -p 8000:8000 ghcr.io/${{ github.repository }}/fastapi-youtube-transcript-api:latest
+        run:  docker run -d -p 8000:8000 ghcr.io/harshanmathew/youtube/fastapi-youtube-transcript-api:latest
