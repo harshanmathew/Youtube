@@ -36,14 +36,16 @@ jobs:
 
       - name: Publish Docker image
         run: |
-          ghcr_image="ghcr.io/${{ github.repository }}/fastapi-youtube-transcript-api:latest"
-          echo "Publishing $ghcr_image..."
-          curl -X PATCH \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/user/packages/container/${{ github.repository }}/fastapi-youtube-transcript-api/versions \
-            -d '{"visibility":"public"}'
-            - name: Run Docker container (for testing purposes)
+         - name: Publish Docker image
+  run: |
+    ghcr_image="ghcr.io/harshanmathew/youtube/fastapi-youtube-transcript-api:latest"
+    echo "Publishing $ghcr_image..."
+    curl -X PATCH \
+      -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+      -H "Accept: application/vnd.github.v3+json" \
+      https://api.github.com/user/packages/container/ghcr.io/harshanmathew/youtube/fastapi-youtube-transcript-api/versions \
+      -d '{"visibility":"public"}'
+
       - run: |
           docker run -d -p 8000:8000 ghcr.io/${{ github.repository }}/fastapi-youtube-transcript-api:latest
           echo "Container is running on port 8000"
