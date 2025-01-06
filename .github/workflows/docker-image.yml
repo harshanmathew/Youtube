@@ -35,15 +35,12 @@ jobs:
           push: true 
           tags: ghcr.io/${{ github.repository }}/fastapi-youtube-transcript-api:latest  
 
-      - name: Publish Docker image
+      
+      - name: Build and Publish API
         run: |
-          ghcr_image="ghcr.io/${{ github.repository }}/fastapi-youtube-transcript-api:latest"
-          echo "Publishing $ghcr_image..."
-          curl -X PATCH \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/user/packages/container/${{ github.repository }}/fastapi-youtube-transcript-api/versions \
-            -d '{"visibility":"public"}'
+          IMAGE_NAME_LOWER=$(echo ${{ env.API_NAME }} | tr '[:upper:]' '[:lower:]')
+          docker build . -f Dockerfile --tag ${{ env.REGISTRY }}/$IMAGE_NAME_LOWER
+          docker push ${{ env.REGISTRY }}/$IMAGE_NAME_LOWER
 
       - name: Run Docker container
         run: docker run --rm ghcr.io/${{ github.repository }}/fastapi-youtube-transcript-api:latest in this do I need use action secrets
