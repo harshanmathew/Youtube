@@ -34,8 +34,7 @@ jobs:
           push: true 
           tags: ghcr.io/${{ github.repository }}/fastapi-youtube-transcript-api:latest  
 
-      - name: Publish Docker image
-        run: |
+    
       - name: Publish Docker image
         run: |
             ghcr_image="ghcr.io/harshanmathew/youtube/fastapi-youtube-transcript-api:latest"
