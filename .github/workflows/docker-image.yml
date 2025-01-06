@@ -43,3 +43,7 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/user/packages/container/${{ github.repository }}/fastapi-youtube-transcript-api/versions \
             -d '{"visibility":"public"}'
+            - name: Run Docker container (for testing purposes)
+      - run: |
+          docker run -d -p 8000:8000 ghcr.io/${{ github.repository }}/fastapi-youtube-transcript-api:latest
+          echo "Container is running on port 8000"
